@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Coffee Online</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f9f9f9; }
+        h1 { color: #333; text-align: center; }
+        .order-form { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .menu-item { margin-bottom: 15px; display: flex; justify-content: space-between; }
+        .menu-item label { font-weight: bold; }
+        .order-btn { width: 100%; background-color: #ff9800; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        .order-btn:hover { background-color: #e68900; }
+        .summary { margin-top: 20px; font-size: 14px; color: #555; }
+        .summary p { margin: 5px 0; }
+        .menu-item input[type="checkbox"] { margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to [Your Coffee Shop]</h1>
+    <div class="order-form">
+        <h2>Place Your Order</h2>
+        <form id="orderForm" onsubmit="showSummary(); return false;">
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" name="items" value="Espresso"> Espresso - $3
+                </label>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" name="items" value="Latte"> Latte - $4
+                </label>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" name="items" value="Cappuccino"> Cappuccino - $4
+                </label>
+            </div>
+            <div class="menu-item">
+                <label>
+                    <input type="checkbox" name="items" value="Mocha"> Mocha - $5
+                </label>
+            </div>
+            <button class="order-btn" type="submit">Review Order</button>
+        </form>
+        
+        <div class="summary" id="summary" style="display: none;">
+            <h3>Order Summary</h3>
+            <p id="orderItems"></p>
+            <p><strong>Thank you for ordering with us!</strong></p>
+        </div>
+    </div>
+
+    <script>
+        function showSummary() {
+            const items = document.querySelectorAll('input[name="items"]:checked');
+            let orderList = [];
+            
+            items.forEach(item => orderList.push(item.value));
+            
+            if (orderList.length > 0) {
+                document.getElementById('orderItems').textContent = "You ordered: " + orderList.join(', ');
+                document.getElementById('summary').style.display = 'block';
+            } else {
+                alert("Please select at least one item to order.");
+            }
+        }
+    </script>
+
+</body>
+</html>
